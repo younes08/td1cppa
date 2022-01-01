@@ -17,18 +17,34 @@ int main()
     for (it = lst.begin(); it != lst.end(); it++)
         cout << *it << endl;
 
-    transform(lst.begin(), lst.end(), lst.begin(), [](char c)
+    
+
+    std::transform(lst.begin(), lst.end(), lst.begin(), [](string& c)->string
                                             {
-                                                if (c == 'a' ||
-                                                    c == 'e' ||
-                                                    c == 'i' ||
-                                                    c == 'o' ||
-                                                    c == 'u'
-                                                    )
-                                                    c = '*';
+                                                for (int i = 0; i < c.length(); i++)
+                                                {
+                                                    if (c[i] == 'a' ||
+                                                        c[i] == 'e' ||
+                                                        c[i] == 'i' ||
+                                                        c[i] == 'o' ||
+                                                        c[i] == 'u'
+                                                        )
+                                                        c[i] = '*';
+
+                                                }
+                                                
                                                 return c;
                                             }
             );
+    
+    std::transform(lst.begin(), lst.end(), lst.begin(), [](string& str)
+                                        {
+                                            for (int i = 0; i < str.length(); i++)
+                                                str[i] = toupper(str[i]);
+                                            return str;
+                                        }
+                );
+
 
     for (it = lst.begin(); it != lst.end(); it++)
         cout << *it << endl;
